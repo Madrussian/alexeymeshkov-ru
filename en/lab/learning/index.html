@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>When does evolution pay for learning — Alexey Meshkov’s lab</title>
+<meta name="description" content="Iteration 2 of the evo-brain-sim simulation: lifetime learning added, and a test of which worlds it evolves in. Learning appeared; the brain did not grow.">
+<link rel="canonical" href="https://alexeymeshkov.ru/en/lab/learning/">
+<link rel="alternate" hreflang="ru" href="https://alexeymeshkov.ru/lab/learning/">
+<link rel="alternate" hreflang="en" href="https://alexeymeshkov.ru/en/lab/learning/">
+<link rel="alternate" hreflang="ar" href="https://alexeymeshkov.ru/ar/lab/learning/">
+<link rel="alternate" hreflang="zh" href="https://alexeymeshkov.ru/zh/lab/learning/">
+<link rel="alternate" hreflang="x-default" href="https://alexeymeshkov.ru/lab/learning/">
+<meta property="og:title" content="When does evolution pay for learning">
+<meta property="og:description" content="Learning pays when the world changes between generations but stays stable within a lifetime. Learning evolved — the brain still did not grow.">
+<meta property="og:url" content="https://alexeymeshkov.ru/en/lab/learning/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://alexeymeshkov.ru/lab/learning/img/exp3_main_heatmap_learning.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%231A1511'/%3E%3Crect x='3' y='3' width='4' height='4' fill='%236B7A3A'/%3E%3Crect x='9' y='3' width='4' height='4' fill='%23D9A441'/%3E%3Crect x='6' y='9' width='4' height='4' fill='%23C8323C'/%3E%3C/svg%3E">
+<link rel="preload" href="/fonts/unbounded-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/fonts/fonts.css">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="bar">
+    <a class="name" href="/en/">Alexey Meshkov</a>
+    <nav aria-label="Sections">
+      <a href="/en/#side">Side</a>
+      <a href="/en/#products">Products</a>
+      <a href="/en/#path">Career</a>
+      <a href="/en/#lab" aria-current="page">Lab</a>
+      <a href="/en/#contact">Contact</a>
+    </nav>
+    <nav class="langs" aria-label="Language">
+      <a href="/lab/learning/" hreflang="ru" lang="ru">RU</a><a href="/en/lab/learning/" hreflang="en" lang="en" aria-current="true">EN</a><a href="/ar/lab/learning/" hreflang="ar" lang="ar">AR</a><a href="/zh/lab/learning/" hreflang="zh" lang="zh">中文</a>
+    </nav>
+  </header>
+
+  <main class="article">
+    <div class="prose">
+      <h1>When does evolution pay for learning</h1>
+      <p class="lead">In the first version of the world the brain did not grow because the animals had nothing to remember. In the second I gave them lifetime learning and tested which worlds it evolves in. Learning appeared exactly where theory predicts. The brain still did not grow.</p>
+      <p class="muted">Iteration 2 of the evo-brain-sim prototype. A toy model, not a study: the conclusions apply to the model. October 2026.</p>
+      <p>A follow-up to <a href="/en/lab/evo-brain/">iteration 1</a>, which found no “volatile climate → bigger brain” link. The main hypothesis then was that without memory and learning a changing world gives the brain no advantage.</p>
+    </div>
+
+    <div class="prose">
+      <h2>In short</h2>
+      <ul>
+        <li><b>Learning pays when the world changes between generations but stays stable within a lifetime.</b> If the world never changes, knowledge moves into the genes. If it changes too fast, what is learned goes stale before it pays off. This supports Stephens’s classic hypothesis.</li>
+        <li><b>Moderate change is best, not the most frequent.</b> Learning peaks where the “right” food changes once every few generations, not every generation.</li>
+        <li><b>Learning helps the individual, not the species.</b> A learner takes good food from non-learning neighbours. But a population where nobody can learn does no worse.</li>
+        <li><b>Brain and memory did not grow.</b> That is how the model is built: learning in it does not need neurons. A limitation of the model, not a finding about nature.</li>
+      </ul>
+    </div>
+
+    <div class="prose">
+      <h2>What changed in the world</h2>
+      <p>Instead of a drifting climate, six fertile patches wander across the map. Patches come in two colours: food of one colour is nutritious, the other is empty. <b>Which colour is “good” changes</b>, controlled by two knobs:</p>
+      <ul>
+        <li><b>Between generations.</b> Once per “generation” (100 ticks — an average lifetime) the good colour flips with some probability: from “never” to “every time”.</li>
+        <li><b>Within a lifetime.</b> How often the colour flips during an individual’s life: from “never” to “every ~6 ticks”.</li>
+      </ul>
+      <p>The animals gained:</p>
+      <ul>
+        <li><b>Colour value</b> — attraction to food of a given colour. It is the sum of an <b>innate</b> part (in the genes, mutates) and a <b>learned</b> part (zero at birth, not inherited).</li>
+        <li><b>Learning</b> — the learned part changes by a simple rule: “what I ate” × “better or worse than I expected”. <b>Learning rate</b> is inherited; zero means “does not learn”. Learning costs energy — at the maximum, as much as one neuron.</li>
+        <li><b>Memory</b> — up to four neurons that remember the previous step. Each costs as much as a regular neuron.</li>
+      </ul>
+      <p>At the start, nobody can learn. There are no predators in iteration 2: in the new world they always went extinct.</p>
+      <p><b>The road to a working model was indirect, and that is a result too.</b> At first, “learning all network weights from reward” turned out to be harmful: learners lost to non-learners even where there was nothing to learn. It worked once genes and learning got the same task — colour value — on equal terms.</p>
+    </div>
+
+    <div class="prose">
+      <h2>The mechanism, isolated</h2>
+      <p>First without evolution: half the population are “learners”, half are rivals. What share of learners remains after 1,200 ticks?</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>World</th><th>stable</th><th>changes between generations</th><th>fast within a lifetime</th><th>fast within and between</th></tr></thead>
+          <tbody>
+            <tr><td>learners vs “naive” (like both colours)</td><td><b>0.99</b></td><td><b>0.81</b></td><td>0.54</td><td>0.45</td></tr>
+            <tr><td>learners vs “oracles” (born knowing the answer)</td><td>0.00</td><td><b>1.00</b></td><td>0.93</td><td>0.96</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>In a stable world innate knowledge beats learning: the oracle wins. When the world changes between generations, learning beats the genes. When it changes too fast, learners are no better than the naive. Oracles lose to everyone there: their “knowledge” is harmful half the time.</p>
+    </div>
+    <figure class="wide"><img src="/lab/learning/img/exp2_compete.webp" alt="Share of learners competing against naive individuals and oracles in four types of world" loading="lazy" width="975"></figure>
+
+    <div class="prose">
+      <h2>The main map: where learning evolves</h2>
+      <p>A 5 × 5 grid: horizontal axis — change between generations, vertical — within a lifetime. Each cell is 6 runs of 10,000 ticks. The number is the learning rate evolution reached (starting from zero).</p>
+    </div>
+    <figure class="wide" style="max-width:760px"><img src="/lab/learning/img/exp3_main_heatmap_learning.webp" alt="Heat map: mean learning rate at the end of evolution by change between generations and within a lifetime" loading="lazy" width="806"><figcaption>Dark means learning evolved, light means it did not. The top row (the world changes every ~6 ticks within a lifetime) is almost white. Chart labels are in Russian.</figcaption></figure>
+    <div class="prose">
+      <ul>
+        <li><b>Fast change within a lifetime kills learning.</b> The most reliable effect: with a colour flip every ~6 ticks the learning rate drops almost to zero (0.03).</li>
+        <li><b>Some change between generations is needed, but not the maximum.</b> In the row stable within a lifetime: 0.23 → 0.65 → 0.70 → <b>0.72</b> → 0.45. The peak is at a flip roughly every 2–3 generations, not every one.</li>
+        <li><b>Why not in the corner.</b> Generations overlap in the model. If the colour flips every 100 ticks, for most adults that is a change during their life, and what everyone learned goes stale at once. So the two knobs are not fully independent in this model.</li>
+        <li><b>Why learning is not zero in a stable world</b> (0.23, wide spread): knowledge moves into the genes, after which learning is simply useless. But it is cheap, and selection against it is weak.</li>
+      </ul>
+    </div>
+    <figure class="wide"><img src="/lab/learning/img/exp3d_profiles.webp" alt="Learning-rate profiles along each of the two grid axes" loading="lazy" width="1400"></figure>
+
+    <div class="prose">
+      <h2>Switching learning off: what is lost</h2>
+      <p>Take populations after evolution and switch learning off in a copy of the world. Two ways of comparing.</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Measure</th><th>flip every generation</th><th>peak point</th><th>control: fast change within life</th></tr></thead>
+          <tbody>
+            <tr><td>population without / with learning (switched off for all)</td><td>1.01 ± 0.08</td><td>1.08 ± 0.08</td><td>1.02 ± 0.06</td></tr>
+            <tr><td>share of “switched off” at the end (off for half, start 0.5)</td><td>0.36 ± 0.11</td><td><b>0.06 ± 0.06</b></td><td>0.77 ± 0.11</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><b>The conclusion cuts both ways, and that matters.</b> A population where nobody can learn does no worse: population and energy are within noise. But in direct competition non-learners lose: at the peak point almost none are left. Where the world changes too fast, the “switched off” win instead.</p>
+      <p>It is the same picture as with the “trackers” in iteration 1: <b>what benefits the individual does not benefit the population</b>. A learner takes good food from a neighbour, but the total food supply does not grow.</p>
+    </div>
+    <figure class="wide"><img src="/lab/learning/img/exp6_ablation.webp" alt="Population and share of individuals without learning after ablation at three points" loading="lazy" width="1400"></figure>
+
+    <div class="prose">
+      <h2>The cost of learning works</h2>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Learning cost</th><th>0</th><th>base</th><th>×2</th><th>×4</th></tr></thead>
+          <tbody>
+            <tr><td>final learning rate</td><td>0.62</td><td>0.45</td><td><b>0.30</b></td><td>0.22</td></tr>
+            <tr><td>share of energy spent on learning</td><td>0</td><td>0.6%</td><td>1.0%</td><td>1.8%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The more expensive learning is, the lower its evolved rate, and the relationship is monotonic. Even free learning does not run up to the maximum: learning too fast is noisy. That the cost is actually charged was verified directly in every run.</p>
+    </div>
+    <figure class="wide" style="max-width:760px"><img src="/lab/learning/img/exp7_cost.webp" alt="Learning rate at four levels of learning cost" loading="lazy" width="845"></figure>
+
+    <div class="prose">
+      <h2>Is it robust</h2>
+      <p>Repeated on five neighbouring parameter sets: more expensive learning, fast and noisy patches, more small patches, harmful “bad” food, cheap life with long-range senses.</p>
+      <ul>
+        <li><b>“Fast change within a lifetime kills learning”</b> — significant in 4 of 6 sets. In one set it cannot be compared: the population goes extinct. In another the direction is the same but the spread is large.</li>
+        <li><b>“Learning pays more with some change between generations than with none”</b> — significant in all 6.</li>
+        <li><b>“Moderate change pays more than change every generation”</b> — same direction in all 6, but significant in only 2. A weak effect.</li>
+      </ul>
+    </div>
+    <figure class="wide"><img src="/lab/learning/img/exp4b_interior_max_robust.webp" alt="Learning rate at different between-generation change in six parameter sets" loading="lazy" width="1040"></figure>
+
+    <div class="prose">
+      <h2>Genes take over the knowledge</h2>
+      <p>The stable world shows something beautiful: at first almost half the knowledge about the good colour comes from learning. Then the innate value grows in the same direction, catches up with and overtakes the learned one, and the learned correction falls to zero. There is nothing left to learn: the genes are already right. This is called <b>genetic assimilation</b>.</p>
+      <p>But the classic <b>Baldwin effect</b> — learning <i>speeding up</i> the appearance of innate knowledge — was not confirmed. With learning, genes reach the answer no faster than without it: 733 ± 197 ticks vs 640 ± 54. If anything, the opposite: those who can learn suffer less from bad genes, so selection on the genes is weaker.</p>
+      <p>Why in this model: the innate value changes in small steps, and each step is immediately useful. Selection needs no hint from learning. In the classic Hinton–Nowlan model only a fully correct combination of genes pays — a “needle in a haystack” — and there learning helps find it.</p>
+    </div>
+    <figure class="wide"><img src="/lab/learning/img/exp8_baldwin.webp" alt="Innate and learned colour value over time in a stable world, with and without learning" loading="lazy" width="1400"></figure>
+
+    <div class="prose">
+      <h2>What did not happen</h2>
+      <ul>
+        <li><b>The brain did not grow.</b> Hidden neurons 0.1–0.5, memory neurons 0.07–0.24 at every point, with no pattern — the mutational background around zero. The reason is the model’s design: both innate and learned value act on the choice of action directly, without neurons. “Go to the good colour” is solved without a “brain”, and memory is not needed because the learned value itself stores the past.</li>
+        <li><b>Childhood did not appear.</b> The gene for “how many ticks a parent feeds its young” stayed at random-drift level (~2 ticks) at every point tested. A young animal in the model can only learn from its own food, so feeding teaches it nothing and costs the parent dearly.</li>
+      </ul>
+    </div>
+    <figure class="wide"><img src="/lab/learning/img/exp3b_all_heatmaps.webp" alt="Grid maps: memory, brain size, innate and learned preference, population" loading="lazy" width="1400"><figcaption>The other maps over the same grid: memory and brain size are near zero almost everywhere.</figcaption></figure>
+
+    <div class="prose">
+      <div class="note">
+        <p><b>Limitations.</b> The “brain” in the sense of neuron count did not grow: learning and neurons are independent in the model. Learning is tailored to the task; the general rule “learn all weights from reward” was harmful in this model. The two time knobs are not fully independent: generations overlap, which probably explains the mid-range peak. The stable world is the noisiest point. Learning gives no population-level benefit. No predators, a small world (56 × 56, 200–600 individuals), 13 of 150 runs ended in extinction. Significance was assessed crudely (difference greater than two standard errors) with no correction for multiple comparisons.</p>
+      </div>
+
+      <h2>What’s next</h2>
+      <ol>
+        <li>Learning that needs neurons (plastic synapses inside the network) — to reconnect “learning” and “brain size”.</li>
+        <li>Separate the time knobs more strictly: discrete generations, or tie the world’s “generation” to an individual’s birth.</li>
+        <li>Bring predators back into the patch world.</li>
+        <li>Social learning: the young learn from a parent’s example. Otherwise childhood is useless.</li>
+        <li>More runs in the stable world and in the grid corners.</li>
+      </ol>
+      <p>Code and raw data are in the evo-brain-sim repository. To discuss, <a href="https://t.me/AlexeyMoh" rel="noopener">message me on Telegram</a>.</p>
+    </div>
+  </main>
+
+  <footer>
+    <span>© 2026 Alexey Meshkov · Moscow</span>
+    <a href="/en/">Home</a>
+  </footer>
+</div>
+</body>
+</html>

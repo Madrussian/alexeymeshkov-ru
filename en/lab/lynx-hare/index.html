@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Can the model reproduce the lynx–hare cycle — Alexey Meshkov’s lab</title>
+<meta name="description" content="A pilot calibration of an ecosystem model against real data: Hudson’s Bay Company hare and lynx pelts, 1845–1935. The period matched; the phase and amplitude did not.">
+<link rel="canonical" href="https://alexeymeshkov.ru/en/lab/lynx-hare/">
+<link rel="alternate" hreflang="ru" href="https://alexeymeshkov.ru/lab/lynx-hare/">
+<link rel="alternate" hreflang="en" href="https://alexeymeshkov.ru/en/lab/lynx-hare/">
+<link rel="alternate" hreflang="ar" href="https://alexeymeshkov.ru/ar/lab/lynx-hare/">
+<link rel="alternate" hreflang="zh" href="https://alexeymeshkov.ru/zh/lab/lynx-hare/">
+<link rel="alternate" hreflang="x-default" href="https://alexeymeshkov.ru/lab/lynx-hare/">
+<meta property="og:title" content="Can the model reproduce the lynx–hare cycle">
+<meta property="og:description" content="Fitting the cycle period is easy. The honest test is what was not fitted — and there the model failed.">
+<meta property="og:url" content="https://alexeymeshkov.ru/en/lab/lynx-hare/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://alexeymeshkov.ru/lab/lynx-hare/img/main_real_vs_sim_fit_period_phase.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%231A1511'/%3E%3Crect x='3' y='3' width='4' height='4' fill='%236B7A3A'/%3E%3Crect x='9' y='3' width='4' height='4' fill='%23D9A441'/%3E%3Crect x='6' y='9' width='4' height='4' fill='%23C8323C'/%3E%3C/svg%3E">
+<link rel="preload" href="/fonts/unbounded-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/fonts/fonts.css">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="bar">
+    <a class="name" href="/en/">Alexey Meshkov</a>
+    <nav aria-label="Sections">
+      <a href="/en/#side">Side</a>
+      <a href="/en/#products">Products</a>
+      <a href="/en/#path">Career</a>
+      <a href="/en/#lab" aria-current="page">Lab</a>
+      <a href="/en/#contact">Contact</a>
+    </nav>
+    <nav class="langs" aria-label="Language">
+      <a href="/lab/lynx-hare/" hreflang="ru" lang="ru">RU</a><a href="/en/lab/lynx-hare/" hreflang="en" lang="en" aria-current="true">EN</a><a href="/ar/lab/lynx-hare/" hreflang="ar" lang="ar">AR</a><a href="/zh/lab/lynx-hare/" hreflang="zh" lang="zh">中文</a>
+    </nav>
+  </header>
+
+  <main class="article">
+    <div class="prose">
+      <h1>Can the model reproduce the lynx–hare cycle</h1>
+      <p class="lead">The most famous ecological cycle in the world is the hare and the lynx in Canada: roughly every 10 years their numbers swing by a factor of tens. I tested whether my toy ecosystem could reproduce it. The period — yes, easily. Everything else — no.</p>
+      <p class="muted">A pilot of calibrating the model against real data. The question is not “is this true about hares” but “can we honestly compare a model with a real series and see where it breaks”. October 2026.</p>
+      <p>The model is the ecosystem from <a href="/en/lab/evo-brain/">iteration 1</a>, without evolution: herbivores and predators wander randomly and eat when they can.</p>
+    </div>
+
+    <div class="prose">
+      <h2>In short</h2>
+      <ul>
+        <li><b>A ~10-year cycle is easy to get.</b> But it is a weak test: the period is set almost entirely by a free knob, “how many model steps make one year”.</li>
+        <li><b>The lynx lag is not reproduced.</b> In the data the lynx peak trails the hare peak by ~1.5 years. In the model it is 2.5–3 years, and parameter fitting barely moves it.</li>
+        <li><b>The swings are 2–3 times smaller than in reality.</b> The real hare varies about 40-fold from trough to peak; the model, 3–5-fold.</li>
+        <li><b>The shape of the cycle matched,</b> but almost any cycling model gives that near-sinusoidal shape. Weak confirmation.</li>
+        <li><b>Bottom line:</b> there is a cycle with the right period, but not the real lynx–hare cycle. The two informative metrics — lag and amplitude — did not match.</li>
+      </ul>
+    </div>
+
+    <div class="prose">
+      <h2>Data</h2>
+      <p>The number of snowshoe hare and Canada lynx pelts sold by trappers to the Hudson’s Bay Company in 1845–1935. The numbers were not edited. A lynx series from the Mackenzie River (1821–1934) was used to check the period independently.</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>What the data show</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>Cycle period</td><td>~10 years (Mackenzie: 9.7)</td></tr>
+            <tr><td>How far the lynx trails the hare</td><td>1.5 years = 0.15 of a cycle</td></tr>
+            <tr><td>Swing, hare / lynx</td><td>≈ 40 / 14-fold from trough to peak</td></tr>
+            <tr><td>Share of the cycle spent growing</td><td>about half for both</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The hare series is noticeably less regular than the lynx series — a known feature of the pelt record.</p>
+    </div>
+    <figure class="wide"><img src="/lab/lynx-hare/img/data_metrics.webp" alt="Hare and lynx pelt series 1845–1935 and their metrics: period, lag, amplitude" loading="lazy" width="1320"><figcaption>Chart labels are in Russian.</figcaption></figure>
+
+    <div class="prose">
+      <h2>How I compared</h2>
+      <ul>
+        <li><b>Shape is compared, not absolute numbers.</b> Pelts are not population counts, so the metrics are period, lynx lag, amplitude and cycle shape.</li>
+        <li><b>Tolerances come from the data themselves:</b> how much each metric varies across 45-year windows of the real series. “Matched” means the difference is within two such spreads.</li>
+        <li><b>Only period and lag were fitted.</b> Nine model parameters (plant growth, hare metabolism and mortality, lynx hunting and mortality, steps per year) were fitted with the CMA-ES algorithm.</li>
+        <li><b>Amplitude and shape were held out.</b> If the model is right, they should match on their own.</li>
+        <li><b>Guarding against fitting noise:</b> the 20 best candidates were rechecked on 8 fresh random seeds. All numbers below come from those.</li>
+      </ul>
+      <p><b>Before calibration:</b> with iteration 1 parameters the lynx goes extinct in every run. Of 96 random parameter sets, both populations survive in 31 and a clear cycle appears in 5. In all five the lynx lags by 0.28–0.32 of a cycle.</p>
+    </div>
+
+    <div class="prose">
+      <h2>The best result</h2>
+      <p>Shown is a run of median, not best, quality. The series are normalised and the start of the simulation is shifted to align its phase with the hare. There is no other fitting in the picture.</p>
+    </div>
+    <figure class="wide"><img src="/lab/lynx-hare/img/main_real_vs_sim_fit_period_phase.webp" alt="Real hare and lynx pelt series against the best simulation, calibration A" loading="lazy" width="1320"><figcaption>Calibration A: the model as is. Solid line — data, dashed — simulation. The period looks similar, but the model’s lynx peaks lag more.</figcaption></figure>
+    <div class="prose">
+      <p><b>Careful: normalisation hides the main failure.</b> Without it you can see how much deeper the real cycle is:</p>
+    </div>
+    <figure class="wide"><img src="/lab/lynx-hare/img/amplitude_real_vs_sim.webp" alt="The same series without normalising the amplitude: real swings are far deeper than the model’s" loading="lazy" width="1400"></figure>
+
+    <div class="prose">
+      <h2>An attempted fix: worse food when hares are many</h2>
+      <p>The classic explanation for the short lag is that hares start declining before the lynx peak, because they eat out their food and plants defend themselves. I added a simple feedback: when hares are abundant, food quality drops with a delay, and a hare gets less energy from eating. This is calibration B.</p>
+      <ul>
+        <li><b>The fit chose a weak effect:</b> food quality varies only between 0.88 and 0.92.</li>
+        <li><b>It cannot be stronger:</b> hares underfeed and die out, and the lynx follows.</li>
+        <li><b>The lag improved only slightly</b> (0.27 → 0.25 of a cycle); the swing did not grow, and the cycle became less regular.</li>
+        <li>Some candidates gave a lag of ~0.20, but the cycle nearly vanished in them. <b>In this model a short lag is bought at the cost of destroying the cycle.</b></li>
+      </ul>
+    </div>
+    <figure class="wide"><img src="/lab/lynx-hare/img/main_real_vs_sim_B_food_quality.webp" alt="Real series against the simulation with food-quality feedback, calibration B" loading="lazy" width="1320"></figure>
+
+    <div class="prose">
+      <h2>Metrics summary</h2>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Metric</th><th>Data</th><th>A</th><th>B</th></tr></thead>
+          <tbody>
+            <tr><td>period, years (fitted)</td><td>9.96</td><td>10.11 ✔</td><td>9.41 ✔</td></tr>
+            <tr><td>lynx lag, share of cycle (fitted)</td><td>0.15</td><td>0.27 ✘</td><td>0.25 ✘</td></tr>
+            <tr><td>hare amplitude (held out)</td><td>1.62</td><td>0.71 ✘</td><td>0.56 ✘</td></tr>
+            <tr><td>lynx amplitude (held out)</td><td>1.13</td><td>0.47 ✘</td><td>0.36 ✘</td></tr>
+            <tr><td>share of cycle growing, hare (held out)</td><td>0.53</td><td>0.51 ✔</td><td>0.51 ✔</td></tr>
+            <tr><td>lynx cycle shape (held out)</td><td>—</td><td>✘</td><td>✘</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Amplitude is log10 of the ratio of high to low levels; 1.62 means roughly 40-fold. ✔ — the difference is within two spreads of the data. B’s improvement over A is small and statistically shaky, even though B has two more parameters.</p>
+    </div>
+    <figure class="wide"><img src="/lab/lynx-hare/img/compare_metrics.webp" alt="Metrics of the data, calibration A and calibration B compared" loading="lazy" width="1400"></figure>
+
+    <div class="prose">
+      <h2>Why it most likely does not match</h2>
+      <p>The model’s predator reproduces “from its energy reserve” and responds to prey with inertia, as in the classic Lotka–Volterra model. Such a system hits a lag of about a quarter cycle. In reality hares apparently start falling before the lynx peak: because of food, stress, other predators. The limitation looks structural, not a matter of parameters.</p>
+      <p>The small amplitude is probably due to the world being small and spatial: hundreds of individuals on a 56 × 56 grid, where chance and local encounters damp large swings.</p>
+      <p>One more hint: at the fitted time scale a hare in the model lives 4–7 “years” without hunger or predators, while a real snowshoe hare lives 1–2 years. The model cannot produce a fast prey population.</p>
+    </div>
+
+    <div class="prose">
+      <h2>How well-determined the parameters are</h2>
+      <p>Poorly. In calibration A, 8 of the 20 best candidates are indistinguishable, and lynx mortality varies across them by 25–40%. In B, 11 of 20 are indistinguishable, and lynx metabolism varies sixfold. By period and lag, B’s parameters are almost undetermined. And this is a lower bound: all candidates come from one fitting run.</p>
+      <p>Several parameters hit the edges of the allowed range (plant growth at the maximum, lynx metabolism at the minimum). That signals not precision but a model “straining” beyond the reasonable. The bounds were deliberately not widened: fitting with exotic values would make the result meaningless.</p>
+    </div>
+    <figure class="wide"><img src="/lab/lynx-hare/img/ambiguity_fit_period_phase.webp" alt="Spread of parameters among candidates indistinguishable from the best, calibration A" loading="lazy" width="1200"></figure>
+
+    <div class="prose">
+      <div class="note">
+        <p><b>Limitations.</b> The data are pelt counts, not population: they depend on fur prices, trapping effort and the company’s logistics. Lag is exactly the metric trade can distort most. One series, about 9 cycles, with noisy metrics of its own. The period fits almost trivially, so matching it is a weak achievement. The model is small and spatial; world size was not calibrated. The structural variant B is a single crude one (one food quality for the whole world). A global optimum of the fit is not guaranteed, although none of the 96 random cycling candidates had a lag below 0.28.</p>
+      </div>
+
+      <h2>What’s next</h2>
+      <ol>
+        <li>The reverse check: fit amplitude and shape, test the lag.</li>
+        <li>A different structure: food regrows with a local delay, cell by cell; a larger or less “spatial” world.</li>
+        <li>An observation model: pelts = f(population, trapping effort) with its own noise. Needed before paleodata, where “proxy ≠ population” is even stronger.</li>
+        <li>An independent check on the Mackenzie series: lynx period and amplitude.</li>
+      </ol>
+      <p>Code, data and all charts are in the evo-brain-sim repository (calibration folder). To discuss, <a href="https://t.me/AlexeyMoh" rel="noopener">message me on Telegram</a>.</p>
+    </div>
+  </main>
+
+  <footer>
+    <span>© 2026 Alexey Meshkov · Moscow</span>
+    <a href="/en/">Home</a>
+  </footer>
+</div>
+</body>
+</html>
