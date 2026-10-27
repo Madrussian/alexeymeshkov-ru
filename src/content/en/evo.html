@@ -1,0 +1,110 @@
+---
+title: "When does evolution pay for a brain — Alexey Meshkov’s lab"
+description: "A 2D simulation of plants, herbivores and predators in which every neuron costs energy. What evolution does to brain size under different climates."
+og_title: "When does evolution pay for a brain"
+og_description: "A toy world where a neuron costs energy. The main result is negative — and that is the interesting part."
+og_image: "https://alexeymeshkov.ru/lab/evo-brain/img/world-poster.png"
+---
+    <div class="prose">
+      <h1>When does evolution pay for a bigger brain</h1>
+      <p class="lead">I built a small 2D world in which every neuron costs energy, and watched what evolution does to brain size when the climate is shaken. The answer was more modest than expected — and more useful.</p>
+      <p class="muted">This is a toy model, not a study: the conclusions apply to the model, not to living nature. October 2026.</p>
+      <p>The prototype tests one hypothesis from the essay <a href="{{ p('/lab/brain-and-ai/') }}">“Why nature needs a brain, and what that can teach AI”</a>: a brain pays off where the world changes faster than evolution can keep up.</p>
+    </div>
+
+    <figure class="prose" style="max-width:560px">
+      <video src="/lab/evo-brain/img/world.mp4" poster="/lab/evo-brain/img/world-poster.png" muted loop playsinline autoplay controls></video>
+      <figcaption>A 56×56 grid with wrapped edges (a torus). Olive — plants, ochre squares — herbivores, carmine — predators.</figcaption>
+    </figure>
+
+    <div class="prose">
+      <h2>How the world works</h2>
+      <ul>
+        <li><b>Plants</b> have no brain. Four genes: growth rate, size, toxicity, seed range. Only mutation and selection.</li>
+        <li><b>Herbivores</b> have a tiny neural network. They sense food, predators, kin nearby and their own energy, and decide where to move, whether to eat and whether to reproduce.</li>
+        <li><b>Predators</b> work the same way, but eat herbivores.</li>
+      </ul>
+      <p><b>The key rule:</b> every hidden neuron costs energy on every step. Brain size (0 to 16 neurons) is inherited with mutations, together with the weights. Evolution chooses for itself which brain it can afford.</p>
+      <p><b>Climate.</b> Fertility is spread across the map as forests, steppes and deserts. A volatility knob sets how fast these zones move: at 0 the map is static, at 1 the pattern rearranges roughly within one herbivore’s lifetime.</p>
+      <p>One run is 10,000 steps: 400–500 generations for herbivores, about 100 for predators.</p>
+    </div>
+
+    <div class="prose">
+      <h2>The world is alive</h2>
+      <p>All three levels coexist for the full 10,000 steps. Predators and herbivores oscillate but do not go extinct. The balance is fragile, though: it had to be tuned by hand, and with neighbouring settings predators died out in 25–40% of runs.</p>
+    </div>
+    <figure class="wide"><img src="/lab/evo-brain/img/exp1_base.webp" alt="Population of plants, herbivores and predators over 10,000 steps of the baseline run" loading="lazy" width="1400"></figure>
+
+    <div class="prose">
+      <h2>Main result: climate does not affect the brain</h2>
+      <p>Six volatility values, 10 runs each. I expected “the less stable the world, the bigger the brain”. I did not see it.</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Climate volatility</th><th>0</th><th>0.1</th><th>0.25</th><th>0.5</th><th>0.75</th><th>1</th></tr></thead>
+          <tbody>
+            <tr><td>Herbivore brain, neurons</td><td>2.85</td><td>2.66</td><td>2.17</td><td>2.59</td><td>2.87</td><td>2.70</td></tr>
+            <tr><td>Predator brain</td><td>1.40</td><td>1.39</td><td>1.08</td><td>1.42</td><td>1.21</td><td>1.43</td></tr>
+            <tr><td>Herbivore skill</td><td>0.62</td><td>0.57</td><td>0.56</td><td>0.58</td><td>0.65</td><td>0.61</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The differences between columns are noise: the standard error is 0.15–0.3 neurons. Herbivores grew slightly from the initial two neurons and learned to move toward food. Predators shrank their brains: prey is plentiful and random wandering is enough.</p>
+      <p>The likely reason: animals sense food here and now. Wherever the forests move, a “go to food” network works just as well. Volatility would put pressure on the brain only if success required remembering or predicting. The model has no memory and no learning.</p>
+    </div>
+    <figure class="wide"><img src="/lab/evo-brain/img/exp2_sweep_brain_vs_volatility.webp" alt="Brain size and skill of herbivores and predators at six levels of climate volatility" loading="lazy" width="1400"></figure>
+
+    <div class="prose">
+      <h2>Replaying the tape: 24 identical runs</h2>
+      <p>The final mean herbivore brain is 2.56 neurons, ranging from 1.6 to 3.8. In no run did the mean brain reach four. Individuals with six or more neurons appeared in 8 of 24 runs, but made up half a percent of the population. The brain never “exploded”.</p>
+    </div>
+    <figure class="wide"><img src="/lab/evo-brain/img/exp3_replay.webp" alt="Brain size trajectories in 24 runs with identical parameters" loading="lazy" width="1400"></figure>
+
+    <div class="prose">
+      <h2>The only knob that works: neuron cost</h2>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Neuron cost per step</th><th>0</th><th>0.001</th><th>0.002</th><th>0.004</th><th>0.008</th></tr></thead>
+          <tbody>
+            <tr><td>Herbivore brain</td><td>5.3</td><td>3.6</td><td>2.7</td><td>2.0</td><td>0.4</td></tr>
+            <tr><td>Predator brain</td><td>3.6</td><td>2.3</td><td>0.9</td><td>0.5</td><td>0.3</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The more expensive the brain, the smaller it gets. Even a free brain does not inflate to the maximum: five neurons out of sixteen. More is simply not needed for “go to food”.</p>
+    </div>
+    <figure class="wide"><img src="/lab/evo-brain/img/exp5_neuron_cost.webp" alt="Brain size at five levels of neuron cost" loading="lazy" width="1400"></figure>
+
+    <div class="prose">
+      <h2>The trackers’ invasion</h2>
+      <p>I hand-built a three-neuron “tracker” that moves to where there is more food, and seeded 10% of them into a population of brainless wanderers. At a reasonable neuron cost, trackers fully displace the wanderers within 300–500 steps under any climate. Only with a very expensive brain does the takeover stall at 55–70%.</p>
+      <p>Bottom line: a 2–3 neuron brain pays off almost always, and more is not needed. That is where evolution stops.</p>
+    </div>
+    <figure class="wide"><img src="/lab/evo-brain/img/exp6_invasion.webp" alt="Share of trackers in the population after the invasion at different neuron costs" loading="lazy" width="1400"></figure>
+
+    <div class="prose">
+      <h2>What surprised me</h2>
+      <ul>
+        <li><b>At first the brain lost.</b> In early versions the brainless wanderers consistently produced larger populations. The causes were small details of the world: random networks broke basic “eating”, and a herd of skilled trackers grazed plants down to the root and died out.</li>
+        <li><b>Smarter is not necessarily more successful as a species.</b> Trackers win head-to-head, but their total population is lower: they overgraze. What is good for the individual is not what is good for the population.</li>
+        <li><b>Predators do not need a brain</b> — under these conditions: they are cheap and prey is plentiful.</li>
+        <li><b>Evolution quickly finds a simple brain and stops</b> at two or three neurons: exactly enough to compare food left and right, up and down.</li>
+      </ul>
+    </div>
+
+    <figure class="wide"><img src="/lab/evo-brain/img/exp4_diversity.webp" alt="Number of plant, herbivore and predator species at the start and end of runs" loading="lazy" width="1400"><figcaption>Diversity does not collapse: plants lose some strategies (8 → 5), animals do not. The metric is crude; some animal “species” are neutral noise.</figcaption></figure>
+
+    <div class="prose">
+      <div class="note">
+        <p><b>Limitations.</b> The main result is negative: there is no “unstable climate → bigger brain” link in this model, which does not prove there is none in nature. Parameters were tuned by hand. Everyone starts with two neurons, and the outcome partly remembers the start. The world is small, there is one task, no memory and no learning. No statistical tests were run: treat differences under 0.4 neurons as zero.</p>
+      </div>
+
+      <h2>What’s next</h2>
+      <ol>
+        <li>Lifetime learning: weights updated from an energy signal. The most likely place where climate starts to affect the brain.</li>
+        <li>Memory: a recurrent layer or an “energy on the previous step” input.</li>
+        <li>A 2D map of neuron cost × climate volatility.</li>
+        <li>Starts from 0 and 8 neurons, runs longer than 10,000 steps.</li>
+        <li>A wider, more complex world with longer-range senses.</li>
+      </ol>
+      <p>Updates to the experiment will appear here. To discuss, <a href="https://t.me/AlexeyMoh" rel="noopener">message me on Telegram</a>.</p>
+    </div>

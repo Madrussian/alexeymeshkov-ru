@@ -1,0 +1,56 @@
+# Тексты интерфейса (шапка, подвал, 404). Тело страниц — в src/content/<lang>/*.html
+site: https://alexeymeshkov.ru
+langs: [ru, en, ar, zh]
+lang_names: {ru: RU, en: EN, ar: AR, zh: 中文}
+
+ru:
+  dir: ltr
+  og_locale: ru_RU
+  preload_font: /fonts/unbounded-cyrillic-700-normal.woff2
+  name: Алексей Мешков
+  nav_label: Разделы
+  lang_label: Язык
+  nav: {products: Продукты, path: Путь, lab: Лаборатория, contact: Контакты}
+  copyright: © 2026 Алексей Мешков · ИП Мешков А. А. · Москва
+  home_link: На главную
+  not_found_title: Такой страницы нет
+  not_found_text: Возможно, вы пришли по старой ссылке с mp-ai.tech или ecom-ai.tech — эти продукты теперь на главной.
+
+en:
+  dir: ltr
+  og_locale: en_US
+  preload_font: /fonts/unbounded-latin-700-normal.woff2
+  name: Alexey Meshkov
+  nav_label: Sections
+  lang_label: Language
+  nav: {products: Products, path: Career, lab: Lab, contact: Contact}
+  copyright: © 2026 Alexey Meshkov · Moscow
+  home_link: Home
+  not_found_title: Page not found
+  not_found_text: You may have followed an old link to mp-ai.tech or ecom-ai.tech — those products now live on the home page.
+
+ar:
+  dir: rtl
+  og_locale: ar_AR
+  preload_font: /fonts/ibm-plex-sans-arabic-arabic-700-normal.woff2
+  name: أليكسي ميشكوف
+  nav_label: الأقسام
+  lang_label: اللغة
+  nav: {products: المنتجات, path: المسيرة, lab: المختبر, contact: التواصل}
+  copyright: © 2026 أليكسي ميشكوف · موسكو
+  home_link: الصفحة الرئيسية
+  not_found_title: الصفحة غير موجودة
+  not_found_text: ربما وصلت عبر رابط قديم إلى mp-ai.tech أو ecom-ai.tech — هذه المنتجات موجودة الآن في الصفحة الرئيسية.
+
+zh:
+  dir: ltr
+  og_locale: zh_CN
+  preload_font: ""
+  name: 阿列克谢·梅什科夫
+  nav_label: 栏目
+  lang_label: 语言
+  nav: {products: 产品, path: 经历, lab: 实验室, contact: 联系}
+  copyright: © 2026 阿列克谢·梅什科夫 · 莫斯科
+  home_link: 返回首页
+  not_found_title: 页面不存在
+  not_found_text: 您可能点击了指向 mp-ai.tech 或 ecom-ai.tech 的旧链接——这些产品现已移至首页。

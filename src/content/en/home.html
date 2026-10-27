@@ -1,0 +1,91 @@
+---
+title: "Alexey Meshkov — AI Product Manager"
+description: "I take LLM products to production. Founder of Side, an AI service for legal documents. Before that, commercial director in e-commerce."
+og_title: "Alexey Meshkov — AI Product Manager"
+og_description: "LLMs in production · e-commerce and logistics as domain. Side, a portfolio of AI products, a lab."
+og_image: ""
+---
+    <div class="hero">
+      <canvas id="world" aria-hidden="true"></canvas>
+      <div class="card">
+        <h1>I take LLM products to production</h1>
+        <p>AI Product Manager. Founder of Side, an AI service that analyses legal documents. Before that, 15 years running sales and operations, most recently in e‑commerce and on marketplaces.</p>
+        <div class="legend" aria-label="What moves in the background">
+          <span class="p">plants</span><span class="h">herbivores</span><span class="r">predators</span>
+          <a href="{{ p('/lab/evo-brain/') }}">what is this world</a>
+        </div>
+      </div>
+    </div>
+
+    <section id="side">
+      <div class="prose">
+        <h2>Side: AI analysis of legal documents</h2>
+        <p class="lead">A person uploads a court document or a claim; Side analyses it and drafts a response. In production since 15 June 2026. Built solo, from discovery and architecture to evals and distribution.</p>
+        <p>The pipeline runs from cheap steps to expensive ones, so each next step gets less work:</p>
+      </div>
+      <ol class="pipe prose">
+        <li><span><b>OCR and parsing.</b> PDFs and scans into structured text.</span></li>
+        <li><span><b>Pseudonymisation.</b> Four stages, personal data recall of 95%+. No name leaves the system — a requirement of Russia’s personal data law (152‑FZ).</span></li>
+        <li><span><b>Classification on Claude Haiku.</b> Identify the type of situation and filter out what the service must not help with.</span></li>
+        <li><span><b>Analysis on Claude Sonnet.</b> Assessment of the position and a draft document.</span></li>
+        <li><span><b>Verification.</b> An LLM judge and a stop classifier with target error rates: at most 1% misses, at most 15% false alarms.</span></li>
+      </ol>
+      <div class="facts">
+        <div><strong>70 test cases</strong><span>eval pipeline with an adversarial generator and a red‑team gate before release</span></div>
+        <div><strong>3 regions</strong><span>Russia, the Netherlands, the US: citizens’ data never leaves the Russian region</span></div>
+        <div><strong>3 models</strong><span>benchmarked: Claude Haiku, YandexGPT 5.1 Pro, Kimi K2.6</span></div>
+      </div>
+      <div class="actions"><a class="btn ghost" href="https://legalside.ru" rel="noopener">Open legalside.ru</a></div>
+    </section>
+
+    <section id="products">
+      <h2 class="prose">Portfolio</h2>
+      <div class="products">
+        <article>
+          <h3>ecom-ai: AI logistics for marketplaces</h3>
+          <p>R&amp;D and consulting for large sellers and warehouse logistics: sales forecasting, stock, returns, allocation across warehouses.</p>
+        </article>
+        <article>
+          <h3>mp-ai: AI store audit</h3>
+          <p>An audit of a store on Wildberries, Ozon and Yandex Market for small businesses: where listings and prices lose money and what to fix first.</p>
+        </article>
+      </div>
+      <p class="prose muted" style="margin-top:24px">Both products used to live on separate domains. Now they are here; together they had about 2,300 organic visitors a month.</p>
+    </section>
+
+    <section id="path">
+      <h2>Career</h2>
+      <ol class="path">
+        <li><time>since 11.2025</time><div><b>Founder, AI Product Manager</b> — Side, ecom-ai, mp-ai<p>The full cycle of my own AI products, solo.</p></div></li>
+        <li><time>04.2024 — 11.2024</time><div><b>Commercial Director</b> — AI Technologies LLC<p>Account management and analytics services for marketplace sellers. Clients’ combined turnover above 3.5 billion roubles a month.</p></div></li>
+        <li><time>07.2023 — 03.2024</time><div><b>Head of Marketplaces</b> — Bi&amp;Ki, children’s footwear<p>Built the channel from zero to 38 million roubles a month in 9 months. Team of 6.</p></div></li>
+        <li><time>02.2022 — 06.2023</time><div><b>Operations and Commercial Lead</b> — apparel store on Ozon and Wildberries<p>Assortment, sourcing in China and Turkey, helping foreign companies enter Russian marketplaces.</p></div></li>
+        <li><time>2016 — 2022</time><div><b>Executive and Operations Director</b> — Chisty Dom, Torgovy Dom 8<p>Public procurement, 200+ suppliers, store openings together with X5 Retail Group.</p></div></li>
+        <li><time>2008 — 2016</time><div><b>Project Manager</b> — Nikpastroy, Genezis IS<p>Infrastructure: MEGA shopping centres, Serebryany Bor tunnels, Russian Railways.</p></div></li>
+      </ol>
+      <p class="muted" style="margin-top:20px">Education: Lomonosov Moscow State University, Mechanics and Mathematics (2004); Russian Foreign Trade Academy, international finance (2012).</p>
+    </section>
+
+    <section id="lab">
+      <div class="lab">
+        <div class="prose">
+          <h2>Lab: when does evolution pay for a brain</h2>
+          <p><a href="{{ p('/lab/brain-and-ai/') }}"><b>Why nature needs a brain, and what that can teach AI.</b></a> An essay on intelligence as a response to the environment, with the brain as only one way to respond. Perhaps AI needs not a brain, but a world in which a mind becomes necessary.</p>
+          <p><a href="{{ p('/lab/evo-brain/') }}"><b>Prototype: a 2D world where a neuron costs energy.</b></a> Brainless plants, herbivores and predators with tiny neural networks. I tested whether evolution grows bigger brains when the climate changes faster. Short answer: no, and it is clear why.</p>
+          <div class="actions"><a class="btn" href="{{ p('/lab/brain-and-ai/') }}">Read the essay</a><a class="btn ghost" href="{{ p('/lab/evo-brain/') }}">Prototype write-up</a></div>
+        </div>
+        <video src="/lab/evo-brain/img/world.mp4" poster="/lab/evo-brain/img/world-poster.png" muted loop playsinline autoplay preload="none" aria-label="Animation of the simulated world"></video>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="prose">
+        <h2>Work and consulting</h2>
+        <p>I am looking for an AI Product Manager role in a team that ships LLM products to production. Strongest where the domain is e‑commerce, marketplaces and logistics.</p>
+        <p>I consult on adopting LLMs: model choice and inference cost, evals without labelled data, handling personal data under strict privacy law.</p>
+        <div class="actions">
+          <a class="btn" href="https://t.me/AlexeyMoh" rel="noopener">Message on Telegram</a>
+          <a class="btn ghost" href="mailto:ip.maa.mos@gmail.com">ip.maa.mos@gmail.com</a>
+        </div>
+      </div>
+    </section>

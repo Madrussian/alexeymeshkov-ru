@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>进化什么时候值得长出大脑 — 阿列克谢·梅什科夫的实验室</title>
+<meta name="description" content="一个二维模拟：植物、食草动物和捕食者，每个神经元都要消耗能量。不同气候下，进化如何改变大脑的大小。">
+<link rel="canonical" href="https://alexeymeshkov.ru/zh/lab/evo-brain/">
+<link rel="alternate" hreflang="ru" href="https://alexeymeshkov.ru/lab/evo-brain/">
+<link rel="alternate" hreflang="en" href="https://alexeymeshkov.ru/en/lab/evo-brain/">
+<link rel="alternate" hreflang="ar" href="https://alexeymeshkov.ru/ar/lab/evo-brain/">
+<link rel="alternate" hreflang="zh" href="https://alexeymeshkov.ru/zh/lab/evo-brain/">
+<link rel="alternate" hreflang="x-default" href="https://alexeymeshkov.ru/lab/evo-brain/">
+<meta property="og:title" content="进化什么时候值得长出大脑">
+<meta property="og:description" content="一个神经元需要消耗能量的玩具世界。主要结果是否定的——这正是有趣之处。">
+<meta property="og:url" content="https://alexeymeshkov.ru/zh/lab/evo-brain/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://alexeymeshkov.ru/lab/evo-brain/img/world-poster.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%231A1511'/%3E%3Crect x='3' y='3' width='4' height='4' fill='%236B7A3A'/%3E%3Crect x='9' y='3' width='4' height='4' fill='%23D9A441'/%3E%3Crect x='6' y='9' width='4' height='4' fill='%23C8323C'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="bar">
+    <a class="name" href="/zh/">阿列克谢·梅什科夫</a>
+    <nav aria-label="栏目">
+      <a href="/zh/#side">Side</a>
+      <a href="/zh/#products">产品</a>
+      <a href="/zh/#path">经历</a>
+      <a href="/zh/lab/evo-brain/" aria-current="page">实验室</a>
+      <a href="/zh/#contact">联系</a>
+    </nav>
+    <nav class="langs" aria-label="语言">
+      <a href="/lab/evo-brain/" hreflang="ru" lang="ru">RU</a><a href="/en/lab/evo-brain/" hreflang="en" lang="en">EN</a><a href="/ar/lab/evo-brain/" hreflang="ar" lang="ar">AR</a><a href="/zh/lab/evo-brain/" hreflang="zh" lang="zh" aria-current="true">中文</a>
+    </nav>
+  </header>
+
+  <main class="article">
+    <div class="prose">
+      <h1>进化什么时候值得长出更大的大脑</h1>
+      <p class="lead">我搭建了一个小小的二维世界，其中每个神经元都要消耗能量，然后观察在气候不断变动时，进化会如何改变大脑的大小。答案比预期更朴素——也更有用。</p>
+      <p class="muted">这是一个玩具模型，不是科学研究：结论只适用于这个模型，不适用于真实的自然界。2026 年 10 月。</p>
+      <p>这个原型检验的是随笔<a href="/zh/lab/brain-and-ai/">《大自然为什么需要大脑，这能给 AI 什么启示》</a>中的一个假设：在世界变化快于进化速度的地方，大脑才划算。</p>
+    </div>
+
+    <figure class="prose" style="max-width:560px">
+      <video src="/lab/evo-brain/img/world.mp4" poster="/lab/evo-brain/img/world-poster.png" muted loop playsinline autoplay controls></video>
+      <figcaption>56×56 的网格，边缘首尾相连（环面）。橄榄色——植物，赭色方块——食草动物，胭脂红——捕食者。</figcaption>
+    </figure>
+
+    <div class="prose">
+      <h2>世界如何运转</h2>
+      <ul>
+        <li><b>植物</b>没有大脑。四个基因：生长速度、体型、毒性、种子传播距离。只有突变和选择。</li>
+        <li><b>食草动物</b>拥有一个微型神经网络。它们能感知附近的食物、捕食者、同类以及自身能量，并决定往哪里走、是否进食、是否繁殖。</li>
+        <li><b>捕食者</b>结构相同，但以食草动物为食。</li>
+      </ul>
+      <p><b>核心规则：</b>每个隐藏神经元在每一步都要消耗能量。大脑大小（0 到 16 个神经元）连同权重一起遗传并发生突变。进化自己决定负担得起多大的大脑。</p>
+      <p><b>气候。</b>肥力在地图上分布为森林、草原和沙漠。一个“变化度”旋钮控制这些区域移动的速度：为 0 时地图静止，为 1 时格局大约在一只食草动物的寿命内重新排列。</p>
+      <p>一次运行为 10,000 步：食草动物约繁衍 400–500 代，捕食者约 100 代。</p>
+    </div>
+
+    <div class="prose">
+      <h2>世界是活的</h2>
+      <p>三个层级在整整 10,000 步中共存。捕食者和食草动物的数量此消彼长，但不会灭绝。不过这种平衡很脆弱：参数是手工调出来的，在相邻的设置下，有 25–40% 的运行中捕食者灭绝。</p>
+    </div>
+    <figure class="wide"><img src="/lab/evo-brain/img/exp1_base.webp" alt="基准运行 10,000 步中植物、食草动物和捕食者的数量" loading="lazy" width="1400"></figure>
+
+    <div class="prose">
+      <h2>主要结果：气候不影响大脑</h2>
+      <p>六个变化度取值，每个运行 10 次。我原本预期“世界越不稳定，大脑越大”。但没有看到。</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>气候变化度</th><th>0</th><th>0.1</th><th>0.25</th><th>0.5</th><th>0.75</th><th>1</th></tr></thead>
+          <tbody>
+            <tr><td>食草动物大脑（神经元）</td><td>2.85</td><td>2.66</td><td>2.17</td><td>2.59</td><td>2.87</td><td>2.70</td></tr>
+            <tr><td>捕食者大脑</td><td>1.40</td><td>1.39</td><td>1.08</td><td>1.42</td><td>1.21</td><td>1.43</td></tr>
+            <tr><td>食草动物技能</td><td>0.62</td><td>0.57</td><td>0.56</td><td>0.58</td><td>0.65</td><td>0.61</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>各列之间的差异只是噪声：均值的标准误为 0.15–0.3 个神经元。食草动物的大脑比初始的两个神经元略有增长，并学会了走向食物。捕食者的大脑反而变小：猎物充足，随机游走就够了。</p>
+      <p>可能的原因：动物感知的是“此时此地”的食物。无论森林搬到哪里，“走向食物”的网络都同样有效。只有当成功需要记忆或预测时，气候变化才会对大脑形成压力。而模型中没有记忆，也没有学习。</p>
+    </div>
+    <figure class="wide"><img src="/lab/evo-brain/img/exp2_sweep_brain_vs_volatility.webp" alt="六种气候变化度下食草动物和捕食者的大脑大小与技能" loading="lazy" width="1400"></figure>
+
+    <div class="prose">
+      <h2>重放磁带：24 次相同的运行</h2>
+      <p>最终食草动物的平均大脑为 2.56 个神经元，范围在 1.6 到 3.8 之间。没有任何一次运行的平均大脑达到四个。拥有六个及以上神经元的个体在 24 次运行中出现过 8 次，但只占种群的千分之五。大脑从未出现“爆发式”增长。</p>
+    </div>
+    <figure class="wide"><img src="/lab/evo-brain/img/exp3_replay.webp" alt="参数相同的 24 次运行中大脑大小的变化轨迹" loading="lazy" width="1400"></figure>
+
+    <div class="prose">
+      <h2>唯一有效的旋钮：神经元的代价</h2>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>每步神经元代价</th><th>0</th><th>0.001</th><th>0.002</th><th>0.004</th><th>0.008</th></tr></thead>
+          <tbody>
+            <tr><td>食草动物大脑</td><td>5.3</td><td>3.6</td><td>2.7</td><td>2.0</td><td>0.4</td></tr>
+            <tr><td>捕食者大脑</td><td>3.6</td><td>2.3</td><td>0.9</td><td>0.5</td><td>0.3</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>大脑越贵，就越小。即使大脑免费，也不会膨胀到上限：十六个神经元中只用了五个。对“走向食物”这个任务来说，更多根本没有必要。</p>
+    </div>
+    <figure class="wide"><img src="/lab/evo-brain/img/exp5_neuron_cost.webp" alt="五种神经元代价下的大脑大小" loading="lazy" width="1400"></figure>
+
+    <div class="prose">
+      <h2>追踪者的入侵</h2>
+      <p>我手工搭建了一个三神经元的“追踪者”，它会走向食物更多的地方；然后把占 10% 的追踪者放进一群没有大脑的游荡者中。在合理的神经元代价下，无论气候如何，追踪者都会在 300–500 步内完全取代游荡者。只有当大脑非常昂贵时，取代才会停在 55–70%。</p>
+      <p>结论：两三个神经元的大脑几乎总是划算的，再多就没必要了。进化正是停在这里。</p>
+    </div>
+    <figure class="wide"><img src="/lab/evo-brain/img/exp6_invasion.webp" alt="不同神经元代价下入侵后追踪者在种群中的占比" loading="lazy" width="1400"></figure>
+
+    <div class="prose">
+      <h2>让我意外的地方</h2>
+      <ul>
+        <li><b>起初大脑是吃亏的。</b>在早期版本中，没有大脑的游荡者总能带来更大的种群。原因藏在世界的细节里：随机网络破坏了最基本的“进食”，而一群熟练的追踪者把植物啃到根部，最后自己灭绝。</li>
+        <li><b>更聪明不一定意味着物种更成功。</b>追踪者在正面竞争中获胜，但总数量更少：它们过度放牧。对个体有利的，不等于对种群有利。</li>
+        <li><b>捕食者不需要大脑</b>——在这些条件下：它们代价低，猎物又多。</li>
+        <li><b>进化很快找到简单的大脑并停下来</b>，停在两三个神经元：刚好够比较左右和上下的食物。</li>
+      </ul>
+    </div>
+
+    <figure class="wide"><img src="/lab/evo-brain/img/exp4_diversity.webp" alt="运行开始和结束时植物、食草动物和捕食者的物种数量" loading="lazy" width="1400"><figcaption>多样性没有坍缩：植物失去了一部分策略（8 → 5），动物没有。这个指标较粗糙，部分动物“物种”只是中性噪声。</figcaption></figure>
+
+    <div class="prose">
+      <div class="note">
+        <p><b>局限性。</b>主要结果是否定的：这个模型中不存在“气候不稳定 → 大脑更大”的关联，但这并不能证明自然界中也不存在。参数是手工调的。所有个体都从两个神经元起步，结果在一定程度上“记得”起点。世界很小，只有一个任务，没有记忆也没有学习。没有做统计检验：小于 0.4 个神经元的差异应视为零。</p>
+      </div>
+
+      <h2>下一步</h2>
+      <ol>
+        <li>终生学习：根据能量信号更新权重。这是气候最有可能开始影响大脑的地方。</li>
+        <li>记忆：循环层，或“上一步能量”的输入。</li>
+        <li>“神经元代价 × 气候变化度”的二维图谱。</li>
+        <li>从 0 个和 8 个神经元起步，运行超过 10,000 步。</li>
+        <li>更大、更复杂的世界，感知范围更远。</li>
+      </ol>
+      <p>实验的更新会发布在这里。欢迎<a href="https://t.me/AlexeyMoh" rel="noopener">通过 Telegram</a> 讨论。</p>
+    </div>
+  </main>
+
+  <footer>
+    <span>© 2026 阿列克谢·梅什科夫 · 莫斯科</span>
+    <a href="/zh/">返回首页</a>
+  </footer>
+</div>
+</body>
+</html>

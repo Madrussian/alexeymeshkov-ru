@@ -6,10 +6,17 @@
 <title>Когда эволюции выгоден мозг — лаборатория Алексея Мешкова</title>
 <meta name="description" content="2D-симуляция: растения, травоядные и хищники, у которых каждый нейрон стоит энергии. Что эволюция делает с размером мозга при разном климате.">
 <link rel="canonical" href="https://alexeymeshkov.ru/lab/evo-brain/">
+<link rel="alternate" hreflang="ru" href="https://alexeymeshkov.ru/lab/evo-brain/">
+<link rel="alternate" hreflang="en" href="https://alexeymeshkov.ru/en/lab/evo-brain/">
+<link rel="alternate" hreflang="ar" href="https://alexeymeshkov.ru/ar/lab/evo-brain/">
+<link rel="alternate" hreflang="zh" href="https://alexeymeshkov.ru/zh/lab/evo-brain/">
+<link rel="alternate" hreflang="x-default" href="https://alexeymeshkov.ru/lab/evo-brain/">
 <meta property="og:title" content="Когда эволюции выгоден мозг">
 <meta property="og:description" content="Игрушечный мир, где нейрон стоит энергии. Главный результат — отрицательный, и это интересно.">
-<meta property="og:image" content="https://alexeymeshkov.ru/lab/evo-brain/img/world-poster.png">
+<meta property="og:url" content="https://alexeymeshkov.ru/lab/evo-brain/">
 <meta property="og:type" content="article">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="https://alexeymeshkov.ru/lab/evo-brain/img/world-poster.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%231A1511'/%3E%3Crect x='3' y='3' width='4' height='4' fill='%236B7A3A'/%3E%3Crect x='9' y='3' width='4' height='4' fill='%23D9A441'/%3E%3Crect x='6' y='9' width='4' height='4' fill='%23C8323C'/%3E%3C/svg%3E">
 <link rel="preload" href="/fonts/unbounded-cyrillic-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/fonts/fonts.css">
@@ -26,6 +33,9 @@
       <a href="/lab/evo-brain/" aria-current="page">Лаборатория</a>
       <a href="/#contact">Контакты</a>
     </nav>
+    <nav class="langs" aria-label="Язык">
+      <a href="/lab/evo-brain/" hreflang="ru" lang="ru" aria-current="true">RU</a><a href="/en/lab/evo-brain/" hreflang="en" lang="en">EN</a><a href="/ar/lab/evo-brain/" hreflang="ar" lang="ar">AR</a><a href="/zh/lab/evo-brain/" hreflang="zh" lang="zh">中文</a>
+    </nav>
   </header>
 
   <main class="article">
@@ -37,7 +47,7 @@
     </div>
 
     <figure class="prose" style="max-width:560px">
-      <video src="img/world.mp4" poster="img/world-poster.png" muted loop playsinline autoplay controls></video>
+      <video src="/lab/evo-brain/img/world.mp4" poster="/lab/evo-brain/img/world-poster.png" muted loop playsinline autoplay controls></video>
       <figcaption>Мир 56×56 клеток, края склеены в тор. Оливковое — растения, охристые квадраты — травоядные, карминовые — хищники.</figcaption>
     </figure>
 
@@ -57,7 +67,7 @@
       <h2>Мир живёт</h2>
       <p>Три уровня сосуществуют все 10 000 шагов. Хищники и травоядные колеблются, но не вымирают. Баланс при этом хрупкий: его пришлось подбирать руками, и на соседних настройках хищники вымирали в 25–40% прогонов.</p>
     </div>
-    <figure class="wide"><img src="img/exp1_base.webp" alt="Численность растений, травоядных и хищников за 10 000 шагов базового прогона" loading="lazy" width="1400"></figure>
+    <figure class="wide"><img src="/lab/evo-brain/img/exp1_base.webp" alt="Численность растений, травоядных и хищников за 10 000 шагов базового прогона" loading="lazy" width="1400"></figure>
 
     <div class="prose">
       <h2>Главный результат: климат на мозг не влияет</h2>
@@ -75,13 +85,13 @@
       <p>Разница между столбцами — на уровне шума: ошибка среднего 0,15–0,3 нейрона. Травоядные немного выросли от стартовых двух нейронов и научились идти к еде. Хищники мозг уменьшили: добычи много, случайного блуждания хватает.</p>
       <p>Почему так, скорее всего: животные видят еду здесь и сейчас. Куда бы ни переехали леса, сеть «иди к еде» работает одинаково. Изменчивость начала бы давить на мозг, если бы для успеха надо было запоминать или предсказывать. Памяти и обучения в модели нет.</p>
     </div>
-    <figure class="wide"><img src="img/exp2_sweep_brain_vs_volatility.webp" alt="Размер мозга и навык травоядных и хищников при шести значениях изменчивости климата" loading="lazy" width="1400"></figure>
+    <figure class="wide"><img src="/lab/evo-brain/img/exp2_sweep_brain_vs_volatility.webp" alt="Размер мозга и навык травоядных и хищников при шести значениях изменчивости климата" loading="lazy" width="1400"></figure>
 
     <div class="prose">
       <h2>Перемотка плёнки: 24 одинаковых запуска</h2>
       <p>Средний мозг травоядных в конце — 2,56 нейрона, разброс от 1,6 до 3,8. Ни в одном прогоне средний мозг не дошёл до четырёх. Особи с шестью и больше нейронами появлялись в 8 прогонах из 24, но это полпроцента популяции. Мозг ни разу не вырос «взрывом».</p>
     </div>
-    <figure class="wide"><img src="img/exp3_replay.webp" alt="Траектории размера мозга в 24 прогонах с одинаковыми параметрами" loading="lazy" width="1400"></figure>
+    <figure class="wide"><img src="/lab/evo-brain/img/exp3_replay.webp" alt="Траектории размера мозга в 24 прогонах с одинаковыми параметрами" loading="lazy" width="1400"></figure>
 
     <div class="prose">
       <h2>Единственная ручка, которая работает: цена нейрона</h2>
@@ -96,14 +106,14 @@
       </div>
       <p>Чем дороже мозг, тем он меньше. Даже бесплатный мозг не раздувается до максимума: пять нейронов из шестнадцати. Больше просто не нужно для задачи «иди к еде».</p>
     </div>
-    <figure class="wide"><img src="img/exp5_neuron_cost.webp" alt="Размер мозга при пяти значениях цены нейрона" loading="lazy" width="1400"></figure>
+    <figure class="wide"><img src="/lab/evo-brain/img/exp5_neuron_cost.webp" alt="Размер мозга при пяти значениях цены нейрона" loading="lazy" width="1400"></figure>
 
     <div class="prose">
       <h2>Вторжение следопытов</h2>
       <p>Я вручную собрал «следопыта» из трёх нейронов, который идёт туда, где больше еды, и подсадил 10% таких в популяцию безмозглых ходоков. При разумной цене нейрона следопыты вытесняют ходоков полностью за 300–500 шагов при любом климате. Только при очень дорогом мозге вытеснение останавливается на 55–70%.</p>
       <p>Итог: мозг на 2–3 нейрона выгоден почти всегда, а больше — не нужно. Поэтому эволюция там и останавливается.</p>
     </div>
-    <figure class="wide"><img src="img/exp6_invasion.webp" alt="Доля следопытов в популяции после вторжения при разной цене нейрона" loading="lazy" width="1400"></figure>
+    <figure class="wide"><img src="/lab/evo-brain/img/exp6_invasion.webp" alt="Доля следопытов в популяции после вторжения при разной цене нейрона" loading="lazy" width="1400"></figure>
 
     <div class="prose">
       <h2>Что удивило</h2>
@@ -115,7 +125,7 @@
       </ul>
     </div>
 
-    <figure class="wide"><img src="img/exp4_diversity.webp" alt="Число видов растений, травоядных и хищников в начале и в конце прогонов" loading="lazy" width="1400"><figcaption>Разнообразие не схлопывается: растения теряют часть стратегий (8 → 5), животные — нет. Метрика грубая, часть «видов» животных — нейтральный шум.</figcaption></figure>
+    <figure class="wide"><img src="/lab/evo-brain/img/exp4_diversity.webp" alt="Число видов растений, травоядных и хищников в начале и в конце прогонов" loading="lazy" width="1400"><figcaption>Разнообразие не схлопывается: растения теряют часть стратегий (8 → 5), животные — нет. Метрика грубая, часть «видов» животных — нейтральный шум.</figcaption></figure>
 
     <div class="prose">
       <div class="note">
