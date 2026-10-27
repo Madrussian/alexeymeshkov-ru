@@ -27,7 +27,7 @@
       <a href="{{ nav_href('#side') }}">Side</a>
       <a href="{{ nav_href('#products') }}">{{ t.nav.products }}</a>
       <a href="{{ nav_href('#path') }}">{{ t.nav.path }}</a>
-      <a href="{{ p('/#lab') if page == 'essay' else p('/lab/evo-brain/') }}"{% if page != 'home' %} aria-current="page"{% endif %}>{{ t.nav.lab }}</a>
+      <a href="{{ p('/lab/evo-brain/') if page in ('home', 'evo') else p('/#lab') }}"{% if page != 'home' %} aria-current="page"{% endif %}>{{ t.nav.lab }}</a>
       <a href="{{ nav_href('#contact') }}">{{ t.nav.contact }}</a>
     </nav>
     <nav class="langs" aria-label="{{ t.lang_label }}">
