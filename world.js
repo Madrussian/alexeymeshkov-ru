@@ -9,7 +9,7 @@
   let W, H, plant, fert, herbs, preds, t = 0;
   const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
   let C = {};
-  const readColors = () => { C = { bg: css("--bg-elevated"), plant: css("--plant"), herb: css("--earth"), pred: css("--accent") }; };
+  const readColors = () => { C = { bg: css("--bg-elevated"), plant: css("--plant"), herb: css("--earth"), pred: css("--pred") }; };
 
   function size() {
     const r = cv.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2);
@@ -18,7 +18,7 @@
     plant = new Float32Array(W * H); fert = new Float32Array(W * H);
     for (let i = 0; i < W * H; i++) plant[i] = Math.random() * 0.6;
     const n = Math.round(W * H / 70);
-    herbs = Array.from({ length: n }, spawn); preds = Array.from({ length: Math.round(n / 6) }, spawn);
+    herbs = Array.from({ length: n }, spawn); preds = Array.from({ length: Math.round(n / 2.5) }, spawn);
   }
   const spawn = () => ({ x: Math.random() * W | 0, y: Math.random() * H | 0, e: 0.6 + Math.random() * 0.4 });
   const wrap = (v, m) => (v + m) % m;
@@ -57,16 +57,17 @@
       for (let dy = -3; dy <= 3 && !found; dy++) for (let dx = -3; dx <= 3; dx++)
         if (occ.has(idx(p.x + dx, p.y + dy))) { tx = Math.sign(dx); ty = Math.sign(dy); found = true; break; }
       if (!found) { const r = Math.random() * 4 | 0; tx = [1,-1,0,0][r]; ty = [0,0,1,-1][r]; }
-      p.x = wrap(p.x + tx, W); p.y = wrap(p.y + ty, H); p.e -= 0.022;
+      p.x = wrap(p.x + tx, W); p.y = wrap(p.y + ty, H); p.e -= 0.016;
       const prey = occ.get(idx(p.x, p.y));
       if (prey && prey.e > 0) { p.e += 0.5; prey.e = 0; occ.delete(idx(p.x, p.y)); }
-      if (p.e > 1.5) { p.e /= 2; np.push({ x: p.x, y: p.y, e: p.e }); }
+      if (p.e > 1.3 && preds.length + np.length < W * H / 45) { p.e /= 2; np.push({ x: p.x, y: p.y, e: p.e }); }
     }
     preds = preds.filter((p) => p.e > 0).concat(np);
     herbs = herbs.filter((a) => a.e > 0);
     // страховка от вымирания, чтобы витрина жила
     if (herbs.length < 8) for (let k = 0; k < 10; k++) herbs.push(spawn());
-    if (preds.length < 3) for (let k = 0; k < 3; k++) preds.push(spawn());
+    const pmin = Math.max(6, Math.round(W * H / 160));
+    if (preds.length < pmin) for (let k = preds.length; k < pmin; k++) preds.push(spawn());
   }
 
   function draw() {
@@ -74,7 +75,7 @@
     ctx.fillStyle = C.plant;
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
       const v = plant[y * W + x]; if (v < 0.08) continue;
-      ctx.globalAlpha = Math.min(0.9, v);
+      ctx.globalAlpha = Math.min(0.7, v * 0.8);
       ctx.fillRect(x * CELL + 1, y * CELL + 1, CELL - 2, CELL - 2);
     }
     ctx.globalAlpha = 1;
