@@ -9,7 +9,7 @@
   let W, H, plant, fert, herbs, preds, t = 0;
   const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
   let C = {};
-  const readColors = () => { C = { bg: css("--paper"), plant: css("--plant"), herb: css("--herb"), pred: css("--pred") }; };
+  const readColors = () => { C = { bg: css("--bg-elevated"), plant: css("--plant"), herb: css("--earth"), pred: css("--accent") }; };
 
   function size() {
     const r = cv.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2);
@@ -17,7 +17,7 @@
     W = Math.max(8, Math.floor(r.width / CELL)); H = Math.max(8, Math.floor(r.height / CELL));
     plant = new Float32Array(W * H); fert = new Float32Array(W * H);
     for (let i = 0; i < W * H; i++) plant[i] = Math.random() * 0.6;
-    const n = Math.round(W * H / 40);
+    const n = Math.round(W * H / 70);
     herbs = Array.from({ length: n }, spawn); preds = Array.from({ length: Math.round(n / 6) }, spawn);
   }
   const spawn = () => ({ x: Math.random() * W | 0, y: Math.random() * H | 0, e: 0.6 + Math.random() * 0.4 });
@@ -46,7 +46,7 @@
       a.x = wrap(bx, W); a.y = wrap(by, H);
       const i = idx(a.x, a.y), bite = Math.min(plant[i], 0.35);
       plant[i] = Math.max(0.05, plant[i] - bite); a.e += bite * 0.8 - 0.045;
-      if (a.e > 1.4 && herbs.length + nh.length < W * H / 12) { a.e /= 2; nh.push({ x: a.x, y: a.y, e: a.e }); }
+      if (a.e > 1.4 && herbs.length + nh.length < W * H / 26) { a.e /= 2; nh.push({ x: a.x, y: a.y, e: a.e }); }
       if (a.e > 0) occ.set(i, a);
     }
     herbs = herbs.filter((a) => a.e > 0).concat(nh);
@@ -74,13 +74,14 @@
     ctx.fillStyle = C.plant;
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
       const v = plant[y * W + x]; if (v < 0.08) continue;
-      ctx.globalAlpha = Math.min(0.85, v * 0.9);
+      ctx.globalAlpha = Math.min(0.9, v);
       ctx.fillRect(x * CELL + 1, y * CELL + 1, CELL - 2, CELL - 2);
     }
     ctx.globalAlpha = 1;
-    const dot = (a, col, r) => { ctx.fillStyle = col; ctx.beginPath(); ctx.arc(a.x * CELL + CELL / 2, a.y * CELL + CELL / 2, r, 0, 6.283); ctx.fill(); };
-    for (const a of herbs) dot(a, C.herb, 3.2);
-    for (const p of preds) dot(p, C.pred, 4);
+    // агенты — квадратные пиксели размером с клетку, без прозрачности (растения — полупрозрачные)
+    const px = (a, col) => { ctx.fillStyle = col; ctx.fillRect(a.x * CELL, a.y * CELL, CELL, CELL); };
+    for (const a of herbs) px(a, C.herb);
+    for (const p of preds) px(p, C.pred);
   }
 
   let last = 0, raf;
@@ -93,5 +94,5 @@
     document.addEventListener("visibilitychange", () => { if (document.hidden) cancelAnimationFrame(raf); else raf = requestAnimationFrame(loop); });
   }
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { size(); climate(); draw(); }, 200); });
-  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => { readColors(); draw(); });
+  matchMedia("(prefers-color-scheme: light)").addEventListener("change", () => { readColors(); draw(); });
 })();
