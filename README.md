@@ -1,6 +1,6 @@
 # alexeymeshkov.ru
 
-Личный сайт: AI PM-портфолио, Side, ecom-ai / mp-ai, лаборатория (evo-brain-sim).
+Личный сайт: AI Product Lead-портфолио, Side, ecom-ai / mp-ai, лаборатория (evo-brain-sim).
 Статика, собранная `build.py` (Jinja2). Хостинг — GitHub Pages (ветка `main`, корень).
 Языки: RU (корень `/`), EN (`/en/`), AR (`/ar/`, справа налево), ZH (`/zh/`).
 
