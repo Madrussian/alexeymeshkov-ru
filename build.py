@@ -17,7 +17,8 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined
 ROOT = Path(__file__).resolve().parent
 SRC = ROOT / "src"
 PAGES = {"home": "/", "evo": "/lab/evo-brain/", "essay": "/lab/brain-and-ai/",
-         "learning": "/lab/learning/", "lynx-hare": "/lab/lynx-hare/"}
+         "learning": "/lab/learning/", "lynx-hare": "/lab/lynx-hare/",
+         "prediction": "/lab/prediction/"}
 
 
 def load_content(path: Path) -> tuple[dict, str]:
