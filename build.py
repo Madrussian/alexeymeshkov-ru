@@ -17,7 +17,7 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined
 ROOT = Path(__file__).resolve().parent
 SRC = ROOT / "src"
 PAGES = {"home": "/", "evo": "/lab/evo-brain/", "essay": "/lab/brain-and-ai/",
-         "learning": "/lab/learning/", "lynx-hare": "/lab/lynx-hare/",
+         "learning": "/lab/learning/", "brain-learning": "/lab/brain-learning/", "lynx-hare": "/lab/lynx-hare/",
          "prediction": "/lab/prediction/"}
 
 
