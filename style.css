@@ -174,3 +174,10 @@ footer { margin-top: 96px; padding: 28px 0 40px; border-top: 1px solid var(--bor
 .langs a:lang(ru), .langs a:lang(en), .langs a:lang(ar) { font-family: "Onest", system-ui, sans-serif; letter-spacing: .02em; }
 
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+
+/* карта Лаборатории */
+.steps { list-style: none; padding: 0; margin: 0; counter-reset: step; }
+.steps li { counter-increment: step; position: relative; margin: 0 0 16px; padding: 16px 18px 6px; padding-inline-start: 56px; background: var(--bg-elevated); border-radius: 4px; }
+.steps li::before { content: counter(step); position: absolute; inset-inline-start: 18px; top: 16px; font-family: var(--display); font-size: 20px; color: var(--accent-2-text); }
+.steps h3 { margin: 0 0 6px; font-size: 19px; }
+.steps p { margin: 0 0 10px; }
